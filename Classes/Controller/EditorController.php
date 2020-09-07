@@ -44,6 +44,13 @@ class EditorController
     protected $rteConfiguration;
 
     /**
+     * TypoScript settings from config.tx_frontendediting
+     *
+     * @var array
+     */
+    protected $settings;
+
+    /**
      * Loads the CKEditor configuration for a specific field of a record
      * kicks FormEngine in since this is used to resolve the proper record type
      *
@@ -53,6 +60,8 @@ class EditorController
      */
     public function getConfigurationAction(ServerRequestInterface $request, ResponseInterface $response = null)
     {
+
+
         if ($response === null) {
             $response = new Response();
         }
@@ -273,5 +282,13 @@ class EditorController
             }
         }
         return $contentLanguage;
+    }
+
+    /**
+     * @param int $pageId
+     */
+    protected function initializeTypoScriptConfiguration(int $pageId)
+    {
+
     }
 }

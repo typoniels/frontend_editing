@@ -46,6 +46,41 @@ lib.parseFunc_RTE.tags.a >
 [backend.user.isLoggedIn]
 
     config.tx_frontendediting {
+        # Handle
+        additionalRteConfigurations {
+            brForTextFields {
+                # before =
+                # after =
+                # replace =
+
+                conditions {
+                    table = tt_content
+                    # columns = bodytext
+                    # fields {
+                    #
+                    # }
+                    tca {
+                        config\.type = text
+                        config\.enableRichtext = 0
+                    }
+                }
+
+                reset = 1
+
+                rteConfiguration = EXT:frontend_editing/Configuration/RTE/MinimalWithBr.yaml
+
+                prePersistProcessing {
+                    parseFunc {
+                        HTMLparser = 1
+                        HTMLparser {
+                            allowTags = br
+                            noAttrib = br
+                        }
+                    }
+                }
+            }
+        }
+
         # These transformations are applied to the page being edited to ensure features work as expected and inceptions
         # are avoided.
         pageContentPreProcessing {
